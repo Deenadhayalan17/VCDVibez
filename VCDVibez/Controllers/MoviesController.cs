@@ -37,5 +37,9 @@ namespace VCDVibez.Controllers
             return Content(string.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
 
         }
+        public ActionResult ByReleaseDate(int year, int month)
+        {
+            return Content(year + "/" + month);
+        }
     }
 }

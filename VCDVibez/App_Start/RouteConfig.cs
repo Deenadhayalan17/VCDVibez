@@ -14,6 +14,13 @@ namespace VCDVibez
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "MoviesByReleaseDate",
+                "movies/released/{year}/{Month}",
+                new { Controller="Movies",Action="ByReleaseDate"},
+                new { year=@"\d{4}",Month=@"\d{2}"},
+               // new { year = "2015|2016" }
+                );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
