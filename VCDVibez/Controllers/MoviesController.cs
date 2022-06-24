@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VCDVibez.Models;
+using VCDVibez.ViewModel;
 
 namespace VCDVibez.Controllers
 {
@@ -12,9 +13,20 @@ namespace VCDVibez.Controllers
         // GET: Movies
         public ActionResult Random()
         {
-            var movie = new Movie() { Name="Iron Man"} ;
+            var movie = new Movie() { Name="Iron Man & x man "} ;
+            // to pass data to view we can use View data and Viewbag too
+            var customers = new List<Customer>
+            {
+                new Customer{ Name="Customer 1"},
+                new Customer{ Name="Customer 2"}
 
-            return View(movie);
+            };
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
+            return View(viewModel);
             //return Content("Hi da");
             //return new EmptyResult();
             //return RedirectToAction("Index", "Home", new { page = '1', sort="mass" });
@@ -38,6 +50,7 @@ namespace VCDVibez.Controllers
 
         }
         [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
+        // more constrains can be added 
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year + "/" + month);
