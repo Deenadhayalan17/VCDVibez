@@ -12,14 +12,15 @@ namespace VCDVibez
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-                "MoviesByReleaseDate",
-                "movies/released/{year}/{Month}",
-                new { Controller="Movies",Action="ByReleaseDate"},
-                new { year=@"\d{4}",Month=@"\d{2}"},
-               // new { year = "2015|2016" }
-                );
+            routes.MapMvcAttributeRoutes();
+            // custom routing (Traditional routing)
+            //routes.MapRoute(
+            //    "MoviesByReleaseDate",
+            //    "movies/released/{year}/{Month}",
+            //    new { Controller="Movies",Action="ByReleaseDate"},
+            //    new { year=@"\d{4}",Month=@"\d{2}"},
+            //   // new { year = "2015|2016" }
+            //    );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
